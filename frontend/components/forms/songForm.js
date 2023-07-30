@@ -50,7 +50,6 @@ const SongForm = (receiver) => {
             <View style={styles.header}>
                 <Image source={receiver.img} style={styles.avatar} />
                 <Text style={styles.username}>{receiver.name}</Text>{" "}
-                {/* Replace with the user's name */}
             </View>
             <View style={styles.searchContainer}>
                 <TextInput

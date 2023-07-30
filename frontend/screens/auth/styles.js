@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+    gradient: { flex: 1 },
     container: {
-        flex: 1,
+        flexGrow: 1,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
         color: "midnightblue",
     },
     button: {
-        width: "80%",
+        width: "30%",
         backgroundColor: "white",
         borderRadius: 25,
         height: 50,

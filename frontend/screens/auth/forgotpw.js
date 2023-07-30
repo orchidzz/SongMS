@@ -1,22 +1,30 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
+import auth from "firebase/auth";
 
 const ForgotPWScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
 
-    const handleSend = () => {
-        // Handle login logic here
+    const handleSend = async () => {
+        try {
+            await auth().sendPasswordResetEmail(email);
+        } catch (error) {
+            console.error("Password Reset Error:", error);
+        }
     };
 
     return (
-        <LinearGradient
-            colors={["#647DEE", "#7F53AC"]}
-            style={styles.container}
-        >
-            <View style={styles.container}>
+        <LinearGradient colors={["#647DEE", "#7F53AC"]} style={styles.gradient}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.logo}>SongMS</Text>
                 <View style={styles.inputView}>
                     <Ionicons name="md-mail" size={24} color="midnightblue" />
@@ -39,7 +47,7 @@ const ForgotPWScreen = ({ navigation }) => {
                 >
                     <Text style={styles.linkText}>Remember your account?</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </LinearGradient>
     );
 };

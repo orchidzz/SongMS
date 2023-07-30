@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
@@ -14,11 +20,8 @@ const ResetPWScreen = ({ navigation }) => {
     };
 
     return (
-        <LinearGradient
-            colors={["#647DEE", "#7F53AC"]}
-            style={styles.container}
-        >
-            <View style={styles.container}>
+        <LinearGradient colors={["#647DEE", "#7F53AC"]} style={styles.gradient}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.logo}>SongMS</Text>
                 <View style={styles.inputView}>
                     <Ionicons
@@ -53,7 +56,7 @@ const ResetPWScreen = ({ navigation }) => {
                 <TouchableOpacity style={styles.button} onPress={handleReset}>
                     <Text style={styles.text}>Reset</Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </LinearGradient>
     );
 };

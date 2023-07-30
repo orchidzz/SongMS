@@ -7,36 +7,32 @@ import {
     TouchableOpacity,
     TextInput,
 } from "react-native";
+import { useStore } from "../../store/store";
 
-const UserInfo = (user) => {
+const UserInfo = () => {
     const [editMode, setEditMode] = useState(false);
-    const [username, setUsername] = useState("username"); // change
-    const [bio, setBio] = useState("hi my name is kitty"); //change
-    const [img, setImg] = useState(user.img);
+    const username = useStore((state) => state.username);
+    const [bio, setBio] = useState(useStore((state) => state.userBio));
+    const [img, setImg] = useState(useStore((state) => state.userImg));
 
     const handleEditPress = () => {
         setEditMode(true);
     };
 
     const handleSavePress = () => {
-        // Save the updated username and bio to your data storage or handle it as required
         setEditMode(false);
     };
 
     return (
         <View style={styles.container}>
-            <Image source={img} style={styles.avatar} />
-            <Text style={styles.username}>
-                {editMode ? "Username" : username}
-            </Text>
-            {editMode ? (
-                <TextInput
-                    style={styles.input}
-                    value={username}
-                    onChangeText={setUsername}
-                    placeholder={username}
-                />
-            ) : null}
+            <Image
+                source={img}
+                style={styles.avatar}
+                onPress={() => {
+                    setEditMode(true);
+                }}
+            />
+            <Text style={styles.username} value={username}></Text>
             <Text style={styles.bio}>{editMode ? "Bio" : bio}</Text>
             {editMode ? (
                 <TextInput
@@ -72,10 +68,11 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
     },
     avatar: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
         marginBottom: 12,
+        backgroundColor: "white",
     },
     username: {
         color: "white",

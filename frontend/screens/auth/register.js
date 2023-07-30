@@ -1,26 +1,62 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {
+    ScrollView,
+    View,
+    Text,
+    TextInput,
+    TouchableOpacity,
+} from "react-native";
 import { styles } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import CustomErrorPopup from "../../components/errors/customErrorPopup";
 
 const RegistrationScreen = ({ navigation }) => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [errorVisible, setErrorVisible] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const handleRegister = () => {
-        // Handle registration logic here
+    const handleRegister = async () => {
+        try {
+            if (
+                password.length === 0 ||
+                email.length === 0 ||
+                username.length === 0 ||
+                confirmPassword.length === 0
+            ) {
+                setErrorVisible(true);
+                setErrorMessage("All fields are required. Try again.");
+                return;
+            }
+            if (confirmPassword !== password) {
+                setErrorVisible(true);
+                setErrorMessage("Password and confirm password do not match.");
+                return;
+            }
+            // if user name already exists
+            const auth = getAuth();
+            await createUserWithEmailAndPassword(auth, email, password);
+            navigation.navigate("Login");
+        } catch (error) {
+            console.error("Registration Error:", error);
+        }
     };
 
     return (
-        <LinearGradient
-            colors={["#647DEE", "#7F53AC"]}
-            style={styles.container}
-        >
-            <View style={styles.container}>
+        <LinearGradient colors={["#647DEE", "#7F53AC"]} style={styles.gradient}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.logo}>Register your account</Text>
+                <CustomErrorPopup
+                    message={errorMessage}
+                    visible={errorVisible}
+                    onClose={() => {
+                        setErrorVisible(false);
+                    }}
+                />
                 <View style={styles.inputView}>
                     <Ionicons name="md-person" size={24} color="midnightblue" />
                     <TextInput
@@ -87,7 +123,7 @@ const RegistrationScreen = ({ navigation }) => {
                         Already have an account?
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </ScrollView>
         </LinearGradient>
     );
 };

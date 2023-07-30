@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { View, TextInput, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const SearchBar = () => {
+const SearchBar = (onChangeFunc) => {
     const [searchText, setSearchText] = useState("");
 
     const handleSearch = (text) => {
         setSearchText(text);
+        // send api request
+        const res = "";
+        onChangeFunc(res);
     };
 
     return (
