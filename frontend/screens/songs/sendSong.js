@@ -1,13 +1,17 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { SongForm } from "../../components/forms/songForm";
-const SendSongScreen = () => {
+import { ScrollView, View } from "react-native";
+import SongForm from "../../components/forms/songForm";
+import { useRoute } from "@react-navigation/native";
+
+const SendSongScreen = ({ navigation }) => {
+    const route = useRoute();
+    const user = route.params.user;
     return (
-        <LinearGradient
-            colors={["#7F5A83", "#0D324D"]}
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
-        >
-            <SongForm />
+        <LinearGradient colors={["#647DEE", "#7F53AC"]} style={{ flex: 1 }}>
+            <View contentContainerStyle={{ marginTop: 0 }}>
+                <SongForm receiver={user} navigation={navigation} />
+            </View>
         </LinearGradient>
     );
 };

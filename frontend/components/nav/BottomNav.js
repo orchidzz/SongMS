@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
-import HomeScreen from "../../screens/nearby/home";
-import ProfileScreen from "../../screens/user/profile";
 import InboxScreen from "../../screens/inbox/inbox";
-import SearchScreen from "../../screens/search/search";
+import MainStackNav from "../nav/MainStackNav";
+import SearchStackNav from "../nav/SearchStackNav";
+import SettingsStackNav from "../nav/SettingsStackNav";
 
 const BottomTabNavigator = createBottomTabNavigator();
 const BottomNav = () => {
@@ -43,12 +43,15 @@ const BottomNav = () => {
                 ],
             })}
         >
-            <BottomTabNavigator.Screen name="Nearby" component={HomeScreen} />
-            <BottomTabNavigator.Screen name="Search" component={SearchScreen} />
+            <BottomTabNavigator.Screen name="Nearby" component={MainStackNav} />
+            <BottomTabNavigator.Screen
+                name="Search"
+                component={SearchStackNav}
+            />
             <BottomTabNavigator.Screen name="Inbox" component={InboxScreen} />
             <BottomTabNavigator.Screen
                 name="Profile"
-                component={ProfileScreen}
+                component={SettingsStackNav}
             />
         </BottomTabNavigator.Navigator>
     );

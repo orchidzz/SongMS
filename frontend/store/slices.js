@@ -1,28 +1,32 @@
 export const AuthSlice = (set) => ({
     isAuthorized: false,
+    spotifyRefreshToken: "",
+    spotifyAccessToken: "",
+    uid: "",
     token: "",
-    setIsAuthorized: () => set({ isAuthorized: !state.isAuthorized }),
+    youtubeApikey: "",
+    setIsAuthorized: (isAuthorized) => set({ isAuthorized: isAuthorized }),
+    setSpotifyRefreshToken: (token) => set({ spotifyRefreshToken: token }),
+    setSpotifyAccessToken: (token) => set({ spotifyAccessToken: token }),
+    setUID: (uid) => set({ uid: uid }),
     setToken: (token) => set({ token: token }),
+    setYoutubeApikey: (key) => set({ youtubeApikey: key }),
 });
 
 export const UserSlice = (set) => ({
-    username: "",
+    userName: "",
     userEmail: "",
     userGeohash: "",
     userBio: "",
-    userImg: require("../assets/User-avatar.svg.png"),
-    // song object: {songName: , artistName: , username: , songImg}
-    userInbox: [],
-    setUsername: (username) => set({ username: username }),
+    userImg: "",
+    defaultUserImg: require("../assets/User-avatar.svg.png"),
+    setUserName: (username) => set({ userName: username }),
     setUserEmail: (userEmail) => set({ userEmail: userEmail }),
     setUserBio: (userBio) => set({ userBio: userBio }),
     setUserImg: (userImg) => set({ userImg: userImg }),
     setUserGeohash: (userGeohash) => set({ userGeohash: userGeohash }),
-    setUserInbox: (userInbox) => set({ userInbox: userInbox }),
-});
-
-export const NearbyUsersSlice = (set) => ({
-    // user object: {username: string, geohash: string, userImg: string, userBio: string}
-    nearbyUsers: [],
-    setNearbyUsers: (nearbyUsers) => set({ nearbyUsers: nearbyUsers }),
+    userSocket: null,
+    setUserSocket: (socket) => set({ userSocket: socket }),
+    lastSendDatetime: null, // to limit write op
+    setLastSendDatetime: (datetime) => set({ lastSendDatetime: datetime }),
 });

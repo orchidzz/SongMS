@@ -1,8 +1,7 @@
 import { create } from "zustand";
-import { AuthSlice, UserSlice, NearbyUsersSlice } from "./slices";
+import { AuthSlice, UserSlice } from "./slices";
 
 export const useStore = create((...a) => ({
     ...AuthSlice(...a),
     ...UserSlice(...a),
-    ...NearbyUsersSlice(...a),
 }));

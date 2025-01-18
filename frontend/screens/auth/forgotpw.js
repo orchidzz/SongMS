@@ -17,6 +17,7 @@ const ForgotPWScreen = ({ navigation }) => {
     const handleSend = async () => {
         try {
             await auth().sendPasswordResetEmail(email);
+            navigation.navigate("Login");
         } catch (error) {
             console.error("Password Reset Error:", error);
         }
@@ -27,7 +28,7 @@ const ForgotPWScreen = ({ navigation }) => {
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.logo}>SongMS</Text>
                 <View style={styles.inputView}>
-                    <Ionicons name="md-mail" size={24} color="midnightblue" />
+                    <Ionicons name="mail" size={24} color="midnightblue" />
                     <TextInput
                         style={styles.inputText}
                         placeholder="Email"

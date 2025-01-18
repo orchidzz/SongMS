@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         paddingVertical: 16,
         paddingHorizontal: 16,
         width: "100%",
-        marginTop: 60, //might have to change
+        marginTop: 0, //might have to change
     },
     list: { flex: 1 },
     gridItem: {
@@ -15,24 +15,30 @@ export const styles = StyleSheet.create({
         paddingVertical: 12,
         paddingHorizontal: 10,
         backgroundColor: "white",
-        borderRadius: "20",
+        borderRadius: 10,
         marginBottom: 15,
+        opacity: 0.9,
+        justifyContent: "space-between",
+        borderWidth: 2,
+        width: "100%",
     },
     image: {
         width: 50,
         height: 50,
-        borderRadius: 25,
+        borderRadius: 30,
         marginRight: 12,
     },
     info: {
-        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-end",
     },
     name: {
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: "bold",
     },
     bio: {
-        fontSize: 14,
+        fontSize: 16,
         color: "black",
     },
 });

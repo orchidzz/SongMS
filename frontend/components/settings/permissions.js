@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Switch } from "react-native";
+import { useStore } from "./store/store";
+import { APIConnectToSpotify } from "../../actions/api";
 
 //iffy about this one, maybe not need permimssions at all
 const PermissionsToggleGroup = () => {
-    const [spotifyPermission, setSpotifyPermission] = useState(false);
-    const [youtubePermission, setYoutubePermission] = useState(false);
+    const [spotifyPermission, setSpotifyPermission] = useState(
+        useStore((state) => state.spotifyToken)
+    );
 
-    const handleSpotifyPermissionChange = (value) => {
-        setSpotifyPermission(value);
-    };
-
-    const handleYoutubePermissionChange = (value) => {
-        setYoutubePermission(value);
-        // Save the permission value to your data storage or handle it as required
+    const handleSpotifyPermissionChange = async () => {
+        if (spotifyPermission != "") {
+            APIConnectToSpotify.then((response) => {
+                useStore((state) =>
+                    state.setSpotifyToken(response.data.access_token)
+                );
+            });
+        }
     };
 
     return (
@@ -25,16 +29,6 @@ const PermissionsToggleGroup = () => {
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={handleSpotifyPermissionChange}
                     value={spotifyPermission}
-                />
-            </View>
-            <View style={styles.row}>
-                <Text style={styles.label}>YouTube</Text>
-                <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={youtubePermission ? "#f5dd4b" : "#f4f3f4"}
-                    ios_backgroundColor="#3e3e3e"
-                    onValueChange={handleYoutubePermissionChange}
-                    value={youtubePermission}
                 />
             </View>
         </View>

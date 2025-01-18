@@ -5,6 +5,13 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "orientation": "portrait",
+    "scheme": "myapp",
+    "platforms": ["ios", "android"], 
+    "newArchEnabled": true,
+    "android": {
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+    }
   }
 }

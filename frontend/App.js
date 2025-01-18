@@ -9,7 +9,7 @@ const App = () => {
     return (
         <View style={{ flex: 1 }}>
             <NavigationContainer>
-                {!isAuthorized ? <BottomNav /> : <AuthNav />}
+                {isAuthorized ? <BottomNav /> : <AuthNav />}
             </NavigationContainer>
         </View>
     );
