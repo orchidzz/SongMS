@@ -3,7 +3,7 @@ import { useStore } from "../store/store";
 
 // need for push notif and sockets later on?
 const API = axios.create({
-    baseURL: "http://192.168.0.6:5001/api",
+    baseURL: "https://songms.onrender.com/api",
 });
 
 useStore.subscribe(

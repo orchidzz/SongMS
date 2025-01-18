@@ -11,7 +11,7 @@ import ngeohash from "ngeohash";
 import * as Location from "expo-location";
 import { distanceBetweenGeohashes } from "../../actions/utils/geohashUtils";
 
-const SOCKET_URL = "http://192.168.0.6:5001";
+const SOCKET_URL = "https://songms.onrender.com/";
 
 const HomeScreen = ({ navigation }) => {
     const {
