@@ -6,12 +6,29 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "splash": {
+      "image": "./assets/splashscreen_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
     "orientation": "portrait",
-    "scheme": "myapp",
-    "platforms": ["ios", "android"], 
+    "scheme": "songms",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "newArchEnabled": true,
     "android": {
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_COARSE_LOCATION"]
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "package": "com.orchidzz.songms"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3a44b014-fccf-476a-a907-80e9345204bd"
+      }
     }
   }
 }
