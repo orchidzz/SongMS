@@ -57,7 +57,6 @@ const HomeScreen = ({ navigation }) => {
 
             socketRef.current.on("connect", async () => {
                 const socketId = socketRef.current.id;
-                console.log(userName);
                 await APIConnectGeohash(userName, newGeohash, socketId);
             });
             socketRef.current.on("update-nearby-user", async (data) => {
